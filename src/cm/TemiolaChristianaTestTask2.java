@@ -225,6 +225,12 @@ public class TemiolaChristianaTestTask2 {
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 
 	}
+
+
+
+
+
+
 }
 
 

@@ -93,26 +93,32 @@ public class Rate {
     }
 
     public BigDecimal calculate(Period periodStay) {
-        if(periodStay == null)      //THIS FIXES THE BUG.
+        BigDecimal price;
+        BigDecimal free = BigDecimal.valueOf(0.0);
+        Double d = new Double("0.5");
+        BigDecimal c = BigDecimal.valueOf(0.25);
+        //BigDecimal freeBigDecimal = new BigDecimal(8);
+        if (periodStay == null)      //THIS FIXES THE BUG.
             throw new IllegalArgumentException("The periodStay cannot null."); //THIS FIXES THE BUG
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-       // return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-              // this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        // return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
+        // this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         BigDecimal payment = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
-                      this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         System.out.println(payment.doubleValue());
 
+
         //IF KIND IS A STAFF
-        if(kind == CarParkKind.STAFF){
+        if (kind == CarParkKind.STAFF) {
             BigDecimal tempBigDecimal = new BigDecimal(16);
-            if(payment.compareTo(new BigDecimal(16)) > 0)
+            if (payment.compareTo(new BigDecimal(16)) == 1)
                 return tempBigDecimal;
             else
                 return payment;
         } //END OF IF STATEMENT FOR STAFF
 
-        return payment;
+        return null;
 
 
 
