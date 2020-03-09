@@ -227,6 +227,33 @@ public class TemiolaChristianaTestTask2 {
 	}
 
 
+	//TEST CASE FOR STUDENT
+	@Test
+	public void calculateTestCase4(){
+		Period reducedPeriod1 = new Period(10,12);
+		Period reducedPeriod2 = new Period(7,10);
+		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+		reducedPeriods.add(reducedPeriod1);
+		reducedPeriods.add(reducedPeriod2);
+
+		Period normalPeriod1 = new Period(4,6);
+		Period normalPeriod2 = new Period(1,4);
+		ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+		normalPeriods.add(normalPeriod1);
+		normalPeriods.add(normalPeriod2);
+
+		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		Assert.assertNotNull(rate);
+
+		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		BigDecimal expectedPayment = new BigDecimal(6);
+		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
+
+	}
+
+
 
 
 

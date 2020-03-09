@@ -95,8 +95,9 @@ public class Rate {
     public BigDecimal calculate(Period periodStay) {
         BigDecimal price;
         BigDecimal free = BigDecimal.valueOf(0.0);
-        Double d = new Double("0.5");
-        BigDecimal c = BigDecimal.valueOf(0.25);
+        //Double d = new Double("0.5");
+        BigDecimal g = BigDecimal.valueOf(0.5);
+        //BigDecimal c = BigDecimal.valueOf(0.25);
         //BigDecimal freeBigDecimal = new BigDecimal(8);
         if (periodStay == null)      //THIS FIXES THE BUG.
             throw new IllegalArgumentException("The periodStay cannot null."); //THIS FIXES THE BUG
@@ -112,18 +113,28 @@ public class Rate {
         //IF KIND IS A STAFF
         if (kind == CarParkKind.STAFF) {
             BigDecimal tempBigDecimal = new BigDecimal(16);
-            if (payment.compareTo(new BigDecimal(16)) == 1)
+            if (payment.compareTo(new BigDecimal(16)) == 1)  // MEANS PAYMENT IS GREATER THAN 16
                 return tempBigDecimal;
             else
                 return payment;
-        } //END OF IF STATEMENT FOR STAFF
+        } //END OF IF STATEMENT FOR STAFF.
+
+
+        //IF KIND IS A STUDENT
+        if(kind == CarParkKind.STUDENT){
+            BigDecimal tempBigDecimal;
+            BigDecimal reduction;
+            tempBigDecimal = new BigDecimal(5.5);
+            reduction = new BigDecimal(0.25);
+            if(payment.compareTo(tempBigDecimal) == 1)  // MEANS PAYMENT IS GREATER THAN  5.5
+                  return payment.subtract(payment.multiply(reduction));
+            else
+                return payment;
+        } //END OF IF STATEMENT FOR STUDENT
 
         return null;
 
 
-
-
-
     } //END OF calculate METHOD.
 
-}
+} //END OF RATE CLASS

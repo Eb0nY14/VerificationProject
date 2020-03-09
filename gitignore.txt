@@ -1,0 +1,3 @@
+.idea/workspace.xml
+out/production/VerificationProject/cm/Rate.class
+out/production/VerificationProject/cm/TemiolaChristianaTestTask2.class
