@@ -132,7 +132,24 @@ public class Rate {
                 return payment;
         } //END OF IF STATEMENT FOR STUDENT
 
+        //return null;
+
+        //IF KIND IS A VISITOR
+        if(kind == CarParkKind.VISITOR){
+            BigDecimal tempBigDecimal;
+            BigDecimal reduction;
+            tempBigDecimal = new BigDecimal(8);
+            if(payment.compareTo(tempBigDecimal) == 1)  // MEANS PAYMENT IS GREATER THAN 8
+            {
+                reduction = payment.subtract(new BigDecimal(8));
+                return reduction.multiply(g);
+            }
+            else
+                return new BigDecimal(0);
+        } //END OF IF STATEMENT FOR VISITOR
+
         return null;
+
 
 
     } //END OF calculate METHOD.
