@@ -147,9 +147,17 @@ public class Rate {
             else
                 return new BigDecimal(0);
         } //END OF IF STATEMENT FOR VISITOR
+        
+
+        //IF KIND IS A MANAGEMENT
+        if(kind == CarParkKind.MANAGEMENT){
+            if(payment.compareTo(new BigDecimal(3)) == 1 || payment.compareTo(new BigDecimal(3)) == 0)  // MEANS PAYMENT IS GREATER THAN OR EQUAL TO 3
+                return payment;
+            else
+                return new BigDecimal(3);
+        } //END OF IF STATEMENT FOR MANAGEMENT
 
         return null;
-
 
 
     } //END OF calculate METHOD.
