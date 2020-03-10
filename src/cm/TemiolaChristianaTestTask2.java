@@ -145,14 +145,6 @@ public class TemiolaChristianaTestTask2 {
 	}
 
 
-
-
-
-
-	/**
-	 *  CALCULATE TEST CASES
-	 */
-
 	@Test
 	public void calculateTestCase1(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -200,11 +192,14 @@ public class TemiolaChristianaTestTask2 {
 
 	}
 
-	//TEST CASE FOR STAFF
+	/**
+	 *  CALCULATE TEST CASES FOR ALL "IF" STATEMENTS BRANCHES FOR STAFF, STUDENT, VISITOR AND MANAGEMENT.
+	 */
+	//TEST CASE FOR STAFF A PAYMENT = 16: IF STATEMENT BRANCH
 	@Test
 	public void calculateTestCase3(){
-		Period reducedPeriod1 = new Period(10,12);
-		Period reducedPeriod2 = new Period(7,10);
+		Period reducedPeriod1 = new Period(11,15);
+		Period reducedPeriod2 = new Period(7,11);
 		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
 		reducedPeriods.add(reducedPeriod1);
@@ -220,14 +215,14 @@ public class TemiolaChristianaTestTask2 {
 		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
 		Assert.assertNotNull(rate);
 
-		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
-		BigDecimal expectedPayment = new BigDecimal(8);
+		BigDecimal actualPayment = rate.calculate(new Period(7, 20));
+		BigDecimal expectedPayment = new BigDecimal(16);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 
 	}
 
 
-	//TEST CASE FOR STUDENT
+	//TEST CASE FOR STUDENT A
 	@Test
 	public void calculateTestCase4(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -253,7 +248,7 @@ public class TemiolaChristianaTestTask2 {
 
 	}
 
-	//TEST CASE FOR VISITOR
+	//TEST CASE FOR VISITOR A
 	@Test
 	public void calculateTestCase5(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -279,7 +274,7 @@ public class TemiolaChristianaTestTask2 {
 
 	}
 
-	//TEST CASE FOR MANAGEMENT
+	//TEST CASE FOR MANAGEMENT A
 	@Test
 	public void calculateTestCase6(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -304,6 +299,40 @@ public class TemiolaChristianaTestTask2 {
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 
 	}
+
+
+
+	/**
+	 *  CALCULATE TEST CASES FOR ALL "ELSE" STATEMENTS BRANCHES FOR STAFF, STUDENT, VISITOR AND MANAGEMENT.
+	 */
+
+	//TEST CASE FOR STAFF B
+	@Test
+	public void calculateTestCase7(){
+		Period reducedPeriod1 = new Period(10,12);
+		Period reducedPeriod2 = new Period(7,10);
+		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+		reducedPeriods.add(reducedPeriod1);
+		reducedPeriods.add(reducedPeriod2);
+
+		Period normalPeriod1 = new Period(4,6);
+		Period normalPeriod2 = new Period(1,4);
+		ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+		normalPeriods.add(normalPeriod1);
+		normalPeriods.add(normalPeriod2);
+
+		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		Assert.assertNotNull(rate);
+
+		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		BigDecimal expectedPayment = new BigDecimal(8);
+		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
+
+	}
+
+
 
 
 

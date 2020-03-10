@@ -147,7 +147,7 @@ public class Rate {
             else
                 return new BigDecimal(0);
         } //END OF IF STATEMENT FOR VISITOR
-        
+
 
         //IF KIND IS A MANAGEMENT
         if(kind == CarParkKind.MANAGEMENT){
