@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class TemiolaChristianaTestTask2 {
@@ -221,7 +223,6 @@ public class TemiolaChristianaTestTask2 {
 
 	}
 
-
 	//TEST CASE FOR STAFF PAYMENT > 16: IF STATEMENT BRANCH
 	@Test
 	public void calculateTestCase4(){
@@ -275,7 +276,7 @@ public class TemiolaChristianaTestTask2 {
 	}
 
 
-	//TEST CASE FOR STUDENT A
+	//TEST CASE FOR STUDENT PAYMENT > 5.5: IF STATEMENT BRANCH
 	@Test
 	public void calculateTestCase6(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -301,9 +302,72 @@ public class TemiolaChristianaTestTask2 {
 
 	}
 
-	//TEST CASE FOR VISITOR A
+
+	//TEST CASE FOR STUDENT PAYMENT < 5.5: ELSE STATEMENT BRANCH
 	@Test
 	public void calculateTestCase7(){
+		Period reducedPeriod1 = new Period(8,9);
+		Period reducedPeriod2 = new Period(7,8);
+		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+		reducedPeriods.add(reducedPeriod1);
+		reducedPeriods.add(reducedPeriod2);
+
+		Period normalPeriod1 = new Period(4,6);
+		Period normalPeriod2 = new Period(1,4);
+		ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+		normalPeriods.add(normalPeriod1);
+		normalPeriods.add(normalPeriod2);
+
+		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		Assert.assertNotNull(rate);
+
+		BigDecimal actualPayment = rate.calculate(new Period(7, 20));
+		BigDecimal expectedPayment = new BigDecimal(4);
+		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
+
+	}
+
+	//TEST CASE FOR STUDENT PAYMENT == 5.5: ELSE STATEMENT BRANCH
+	@Test
+	public void calculateTestCase8(){
+		Period reducedPeriod1 = new Period(10,12);
+		Period reducedPeriod2 = new Period(8,10);
+		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+
+		reducedPeriods.add(reducedPeriod1);
+		reducedPeriods.add(reducedPeriod2);
+
+		Period normalPeriod1 = new Period(4,6);
+		Period normalPeriod2 = new Period(1,4);
+		ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+		normalPeriods.add(normalPeriod1);
+		normalPeriods.add(normalPeriod2);
+
+		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(1.37), reducedPeriods, normalPeriods);
+		Assert.assertNotNull(rate);
+
+		//BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		BigDecimal payment = rate.calculate(new Period(8, 20));
+		BigDecimal actualPayment;
+		actualPayment = payment.setScale(1, RoundingMode.CEILING);
+		//MathContext mc = new MathContext(1);  //2 precision
+		//actualPayment.round(mc);
+		BigDecimal expectedPayment = new BigDecimal(5.5);
+		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
+
+	}
+
+
+
+
+
+
+	//TEST CASE FOR VISITOR A
+	@Test
+	public void calculateTestCase9(){
 		Period reducedPeriod1 = new Period(10,12);
 		Period reducedPeriod2 = new Period(7,10);
 		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
@@ -329,7 +393,7 @@ public class TemiolaChristianaTestTask2 {
 
 	//TEST CASE FOR MANAGEMENT A
 	@Test
-	public void calculateTestCase8(){
+	public void calculateTestCase10(){
 		Period reducedPeriod1 = new Period(10,12);
 		Period reducedPeriod2 = new Period(7,10);
 		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
@@ -361,7 +425,7 @@ public class TemiolaChristianaTestTask2 {
 
 	//TEST CASE FOR STAFF B
 	@Test
-	public void calculateTestCase9(){
+	public void calculateTestCase11(){
 		Period reducedPeriod1 = new Period(10,12);
 		Period reducedPeriod2 = new Period(7,10);
 		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
