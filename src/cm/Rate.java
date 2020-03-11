@@ -132,7 +132,6 @@ public class Rate {
                 return payment;
         } //END OF IF STATEMENT FOR STUDENT
 
-        //return null;
 
         //IF KIND IS A VISITOR
         if(kind == CarParkKind.VISITOR){
