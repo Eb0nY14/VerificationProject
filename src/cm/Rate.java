@@ -95,16 +95,13 @@ public class Rate {
     public BigDecimal calculate(Period periodStay) {
         BigDecimal price;
         BigDecimal free = BigDecimal.valueOf(0.0);
-        //Double d = new Double("0.5");
         BigDecimal g = BigDecimal.valueOf(0.5);
-        //BigDecimal c = BigDecimal.valueOf(0.25);
-        //BigDecimal freeBigDecimal = new BigDecimal(8);
+
         if (periodStay == null)      //THIS FIXES THE BUG.
             throw new IllegalArgumentException("The periodStay cannot null."); //THIS FIXES THE BUG
+        
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        // return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-        // this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         BigDecimal payment = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         System.out.println(payment.doubleValue());
