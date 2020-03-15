@@ -41,7 +41,7 @@ public class Period {
 
     /**
      * The duration of a period
-     * @return the number of whole hours a this period covers
+     * @return the number of whole hours this period covers
      */
     public int duration() {
         return this.endHour - this.startHour;
