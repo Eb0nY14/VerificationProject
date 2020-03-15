@@ -33,11 +33,8 @@ public class TemiolaChristianaTestTask2 {
 		
 		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
 		Assert.assertNotNull(rate);
-		
-		//Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5), new BigDecimal(2), reducedPeriods, normalPeriods);
-		//BigDecimal charge = rate.calculate(periodStay);
-		//Assert.assertNotNull(charge);
 	}
+
 		// TEST FOR IF REDUCED PERIODS IS NULL
 	@Test(expected = IllegalArgumentException.class)
 	public void testcase2(){
@@ -146,7 +143,6 @@ public class TemiolaChristianaTestTask2 {
 		Assert.assertNotNull(rate);
 	}
 
-
 	@Test
 	public void calculateTestCase1(){
 		Period reducedPeriod1 = new Period(10,12);
@@ -219,10 +215,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Staff > 16 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(6, 20));
+		System.out.println("The Actual Payment for Staff > 16 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(16);
+		System.out.println("The Expected Payment for Staff > 16 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -244,10 +243,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Staff == 16 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(7, 20));
+		System.out.println("The Actual Payment for Staff == 16 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(16);
+		System.out.println("The Expected Payment for Staff == 16 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -269,10 +271,14 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+
+		System.out.println("The Rate for Staff < 16 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		System.out.println("The Actual Payment for Staff < 16 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(8);
+		System.out.println("The Expected Payment for Staff < 16 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -298,10 +304,17 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Student > 5.5 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		//Period reducedPeriod1 = new Period(10,12);
+		//Period givenPeriod = new Period(8,20);
+		//BigDecimal workingPayment = rate.calculate(new Period(8, 20));
+		//BigDecimal actualPayment = rate;
+		System.out.println("The Actual Payment for Student > 5.5 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(6);
+		System.out.println("The Expected Payment for Student > 5.5 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -323,10 +336,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Student < 5.5 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(7, 20));
+		System.out.println("The Actual Payment for Student < 5.5 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(4);
+		System.out.println("The Expected Payment for Student < 5.5 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -348,15 +364,17 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal(5.0), new BigDecimal(1.37), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Student == 5.5 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal payment = rate.calculate(new Period(8, 20));
 		BigDecimal actualPayment;
 		actualPayment = payment.setScale(1, RoundingMode.CEILING);
+		System.out.println("The Actual Payment for Student == 5.5 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(5.5);
+		System.out.println("The Expected Payment for Student == 5.5 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
-
 
 	//********************************************************************************************************
 	//				 3.  VISITOR PAYMENT
@@ -380,10 +398,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Visitor > 8 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(6, 20));
+		System.out.println("The Actual Payment for Visitor > 8 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(5);
+		System.out.println("The Expected Payment for Visitor > 8 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -391,7 +412,7 @@ public class TemiolaChristianaTestTask2 {
 	@Test
 	public void calculateTestCase10(){
 		Period reducedPeriod1 = new Period(10,12);
-		Period reducedPeriod2 = new Period(7,10);
+		Period reducedPeriod2 = new Period(8,10);
 		ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
 		reducedPeriods.add(reducedPeriod1);
@@ -405,10 +426,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Visitor == 8 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		System.out.println("The Actual Payment for Visitor == 8 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(0);
+		System.out.println("The Expected Payment for Visitor == 8 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -430,10 +454,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Visitor < 8 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		System.out.println("The Actual Payment for Visitor < 8 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(0);
+		System.out.println("The Expected Payment for Visitor < 8 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -460,10 +487,13 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.MANAGEMENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Management > 3 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(6, 20));
+		System.out.println("The Actual Payment for Management > 3 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(18);
+		System.out.println("The Expected Payment for Management > 3 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
@@ -485,15 +515,17 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.MANAGEMENT, new BigDecimal(5.0), new BigDecimal(1.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Management == 3 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		System.out.println("The Actual Payment for Management == 3 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(3);
+		System.out.println("The Expected Payment for Management == 3 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
 
 	//TEST CASE FOR MANAGEMENT PAYMENT < 3: ELSE STATEMENT BRANCH
-
 	@Test
 	public void calculateTestCase14(){
 		Period reducedPeriod1 = new Period(21,22);
@@ -511,14 +543,15 @@ public class TemiolaChristianaTestTask2 {
 		normalPeriods.add(normalPeriod2);
 
 		Rate rate = new Rate(CarParkKind.MANAGEMENT, new BigDecimal(5.0), new BigDecimal(2.0), reducedPeriods, normalPeriods);
+		System.out.println("The Rate for Management < 3 is " + rate);
 		Assert.assertNotNull(rate);
 
 		BigDecimal actualPayment = rate.calculate(new Period(8, 20));
+		System.out.println("The Actual Payment for Management < 3 is " + actualPayment);
 		BigDecimal expectedPayment = new BigDecimal(3);
+		System.out.println("The Expected Payment for Management < 3 is " + expectedPayment);
 		Assert.assertTrue(expectedPayment.compareTo(actualPayment) == 0);
 	}
-
-
 }
 
 

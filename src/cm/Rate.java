@@ -93,19 +93,84 @@ public class Rate {
     }
 
     public BigDecimal calculate(Period periodStay) {
-        BigDecimal price;
-        BigDecimal free = BigDecimal.valueOf(0.0);
         BigDecimal g = BigDecimal.valueOf(0.5);
 
         if (periodStay == null)      //THIS FIXES THE BUG.
             throw new IllegalArgumentException("The periodStay cannot null."); //THIS FIXES THE BUG
-        
+
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
         BigDecimal payment = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         System.out.println(payment.doubleValue());
 
+
+    /*     abstract class Kind
+         {
+            public abstract BigDecimal Calculate(Period periodStay);
+         }
+
+         class Staff extends Kind
+         {
+             //@Override
+             public BigDecimal Calculate(Period periodStay)
+             {
+                BigDecimal tempBigDecimal = new BigDecimal(16);
+                if (payment.compareTo(new BigDecimal(16)) == 1)  // MEANS PAYMENT IS GREATER THAN 16
+                    return tempBigDecimal;
+                else
+                    return payment;
+            }
+          }
+
+         class Student extends Kind
+         {
+            //@Override
+            public  BigDecimal Calculate(Period periodStay)
+            {
+                BigDecimal tempBigDecimal;
+                BigDecimal reduction;
+                tempBigDecimal = new BigDecimal(5.5);
+                reduction = new BigDecimal(0.25);
+                if(payment.compareTo(tempBigDecimal) == 1)  // MEANS PAYMENT IS GREATER THAN  5.5
+                    return payment.subtract(payment.multiply(reduction));
+                else
+                    return payment;
+            } //END OF IF STATEMENT FOR STUDENT
+        }
+
+        class Visitor extends Kind
+        {
+            public BigDecimal Calculate(Period periodStay)
+            {
+                BigDecimal tempBigDecimal;
+                BigDecimal reduction;
+                tempBigDecimal = new BigDecimal(8);
+                if(payment.compareTo(tempBigDecimal) == 1)  // MEANS PAYMENT IS GREATER THAN 8
+                {
+                    reduction = payment.subtract(new BigDecimal(8));
+                    return reduction.multiply(g);
+                }
+                else
+                    return new BigDecimal(0);
+            } //END OF IF STATEMENT FOR VISITOR
+        }
+
+        class Management extends Kind
+        {
+            //@Override
+            public BigDecimal Calculate(Period periodStay)
+            {
+                if(payment.compareTo(new BigDecimal(3)) == 1 || payment.compareTo(new BigDecimal(3)) == 0)  // MEANS PAYMENT IS GREATER THAN OR EQUAL TO 3
+                    return payment;
+                else
+                    return new BigDecimal(3);
+            } //END OF IF STATEMENT FOR MANAGEMENT
+
+        }
+
+        return null;
+*/
 
         //IF KIND IS A STAFF
         if (kind == CarParkKind.STAFF) {
